@@ -1,0 +1,3 @@
+[submodule "Prithvi-WxC"]
+	path = Prithvi-WxC
+	url = git@github.com:NASA-IMPACT/Prithvi-WxC.git
