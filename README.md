@@ -4,12 +4,12 @@ This repository contains code and resources for training and inferring gravity w
 
 ## Setup
 
-1. Clone the repository with submodules:
+1.	Clone the repository with submodules:
 
         git clone --recurse-submodules git@github.com:NASA-IMPACT/gravity-wave-finetuning.git gravity_wave_finetuning
         cd gravity_wave_finetuning
 
-2. Create and activate a Conda environment for the project:
+2.	Create and activate a Conda environment for the project:
 
         conda env create -f environment.yml
         conda activate pt24
@@ -48,7 +48,7 @@ To configure the training process, update the paths for the dataset and checkpoi
 To run the training on a single node and a single GPU, execute the following command:
 
         torchrun \
-                --nproc_per_node=4 \
+                --nproc_per_node=1 \
                 --nnodes=1 \
                 --rdzv_backend=c10d \
                 finetune_gravity_wave.py 
