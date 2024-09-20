@@ -1,0 +1,85 @@
+#!/usr/bin/sh
+
+#############################################
+
+## Placeholders used used in this script :
+
+## <QUEUE_NAME>: Specify the PBS queue name.
+## <EMAIL_ADDRESS>: Provide an email address for notifications.
+## <NUM_NODES>: Number of nodes to request.
+## <MODEL_TYPE>: Type of model being used.
+## <NUM_CPUS>: Number of CPUs per node.
+## <NUM_GPUS>: Number of GPUs per node.
+## <MEMORY>: Memory allocation per node.
+## <WALLTIME>: Maximum wall time for the job.
+## <LOG_DIR>: Directory for log files.
+## <OUTPUT_FILE>: Output log file name.
+## <ERROR_FILE>: Error log file name.
+## <JOB_NAME>: Job name.
+## <DATA_ARGS>: Arguments for data processing.
+## <CONFIG_FILE_PATH>: Path to the configuration file.
+## <PORT_NUMBER>: Port number for communication.
+
+#############################################
+
+
+#PBS -S /usr/bin/bash
+
+#PBS -l select=<NUM_NODES>:model=<MODEL_TYPE>:ncpus=<NUM_CPUS>:ngpus=<NUM_GPUS>:mem=<MEMORY>
+#PBS -l place=scatter:excl
+
+#PBS -q <QUEUE_NAME>
+#PBS -l walltime=<WALLTIME>
+
+#PBS -kod -ked
+#PBS -o logs/<LOG_DIR>/<OUTPUT_FILE>.out
+#PBS -e logs/<LOG_DIR>/<ERROR_FILE>.err
+
+#PBS -N uvtp-2n
+
+data_args="uvtp122"
+echo configuration file
+echo ------------------------
+cat <CONFIG_FILE_PATH>
+echo ------------------------
+
+NUM_NODES=<NUM_NODES>
+TOTAL_NUM_GPUs=$((NUM_NODES * <NUM_GPUS>))  # Total number of GPUs over all nodes
+
+echo `date` running $data_args on $NUM_NODES 
+
+export BASE=$PWD
+export MASTER_PORT=<PORT_NUMBER>
+export MASTER_ADDR=$(hostname -i)
+export WORLD_SIZE=$TOTAL_NUM_GPUs
+export NODE_RANK=0
+job_id=$RANDOM
+
+NODES=($(uniq $PBS_NODEFILE))
+echo cluster nodes: ${NODES[@]}
+
+if [[ "$NUM_NODES" -ne ${#NODES[@]} ]]; then
+    echo "Aborting, NUM_NODES and nodes requested are not consistent"
+    exit 2
+fi
+
+# For each node that is not the current master node
+C=1
+for node in ${NODES[@]}
+do
+  if [[ $node != $(hostname) ]]
+  then
+    # SSH into each node and run the script with node info
+    echo on child node $node
+    ssh -i $HOME/.ssh/id_rsa $node "cd $BASE; sh train.sh $data_args $C $NUM_NODES $MASTER_ADDR $MASTER_PORT $job_id" &
+    C=$((C + 1))
+    sleep 2
+  fi
+done
+
+# Process on master node runs last
+echo master node `hostname`
+
+sh $BASE/train.sh $data_args 0 $NUM_NODES $MASTER_ADDR $MASTER_PORT $job_id
+
+echo "Done with PBS"
