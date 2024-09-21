@@ -154,7 +154,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
 
-    from configs import get_cfg
+    from config import get_cfg
 
     cfg = get_cfg()
     os.makedirs(name=args.results_dir, exist_ok=True)
