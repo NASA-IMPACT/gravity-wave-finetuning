@@ -1,5 +1,9 @@
 # Gravity Wave Parameterization
 
+<p align="center">
+<img src="flux_prediction_prithvi_finetuning.gif" width="70%"/>
+</p>
+
 This repository contains code and resources for training and inferring gravity wave flux using machine learning models. The project is structured for easy setup and execution, supporting both single-node and multi-node GPU training.
 
 ## Setup
@@ -72,11 +76,3 @@ After training, you can run inferences using the following command. Make sure to
                 --ckpt_path=/path/to/checkpoint \
                 --data_path=/path/to/data \
                 --results_dir=/path/to/results_dir
-
-
-## Citation
-
-If you use this code or dataset in your research, please cite the following:
-```
-TODO
-```
