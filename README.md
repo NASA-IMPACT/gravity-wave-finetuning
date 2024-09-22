@@ -76,3 +76,15 @@ After training, you can run inferences using the following command. Make sure to
                 --ckpt_path=/path/to/checkpoint \
                 --data_path=/path/to/data \
                 --results_dir=/path/to/results_dir
+
+## Citation
+If you use this work, consider citing our paper
+
+```
+@article{gupta2024machine,
+  title={Machine learning global simulation of nonlocal gravity wave propagation},
+  author={Gupta, Aman and Sheshadri, Aditi and Roy, Sujit and Gaur, Vishal and Maskey, Manil and Ramachandran, Rahul},
+  journal={arXiv preprint arXiv:2406.14775},
+  year={2024}
+}
+```
