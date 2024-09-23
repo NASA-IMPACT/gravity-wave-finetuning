@@ -81,6 +81,16 @@ After training, you can run inferences using the following command. Make sure to
 If you use this work, consider citing our paper
 
 ```
+@misc{schmude2024prithviwxcfoundationmodel,
+      title={Prithvi WxC: Foundation Model for Weather and Climate}, 
+      author={Johannes Schmude and Sujit Roy and Will Trojak and Johannes Jakubik and Daniel Salles Civitarese and Shraddha Singh and Julian Kuehnert and Kumar Ankur and Aman Gupta and Christopher E Phillips and Romeo Kienzler and Daniela Szwarcman and Vishal Gaur and Rajat Shinde and Rohit Lal and Arlindo Da Silva and Jorge Luis Guevara Diaz and Anne Jones and Simon Pfreundschuh and Amy Lin and Aditi Sheshadri and Udaysankar Nair and Valentine Anantharaj and Hendrik Hamann and Campbell Watson and Manil Maskey and Tsengdar J Lee and Juan Bernabe Moreno and Rahul Ramachandran},
+      year={2024},
+      eprint={2409.13598},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2409.13598}, 
+}
+
 @article{gupta2024machine,
   title={Machine learning global simulation of nonlocal gravity wave propagation},
   author={Gupta, Aman and Sheshadri, Aditi and Roy, Sujit and Gaur, Vishal and Maskey, Manil and Ramachandran, Rahul},
