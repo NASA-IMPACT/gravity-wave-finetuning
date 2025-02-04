@@ -1,0 +1,99 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prithviwxc-gravitywave"
+version = "0.1.0"
+description = "Gravity Wave Parameterization"
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Sujit Roy", email = "sr0197@uah.edu" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+dependencies = [
+"cachetools",
+"cartopy",
+"click",
+"cloudpickle",
+"contourpy",
+"cycler",
+"dask",
+"docker-pycreds",
+"fonttools",
+"fsspec",
+"gitdb",
+"gitpython",
+"h5netcdf",
+"h5py",
+"kiwisolver",
+"locket",
+"matplotlib",
+"nvidia-ml-py",
+"nvitop",
+"pandas",
+"partd",
+"platformdirs",
+"protobuf",
+"pyhelpme",
+"pyparsing",
+"pyproj",
+"pyshp",
+"python-dateutil",
+"pytz",
+"sentry-sdk",
+"setproctitle",
+"shapely",
+"smmap",
+"tabulate",
+"termcolor",
+"toolz",
+"tqdm",
+"tzdata",
+"wandb",
+"xarray",
+"yacs",
+"asttokens",
+"brotli",
+"certifi",
+"charset-normalizer",
+"comm",
+"debugpy",
+"decorator",
+"exceptiongroup",
+"executing",
+"filelock",
+"idna",
+"importlib-metadata",
+"intel-openmp",
+"ipykernel",
+"ipython",
+"jedi",
+"jinja2",
+"jupyter_client",
+"jupyter_core",
+"lightning",
+"markupsafe",
+"matplotlib-inline",
+"mkl",
+"mpmath",
+"numpy",
+"scipy",
+"torch",
+"torchaudio",
+"torchvision",
+"yacs"
+]
+
+[project.urls]
+homepage = "https://github.com/NASA-IMPACT/gravity-wave-finetuning"
+
+[tool.setuptools]
+packages=["prithviwxc", "prithviwxc.gravitywave"]
+include-package-data = true

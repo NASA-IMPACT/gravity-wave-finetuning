@@ -74,6 +74,6 @@ torchrun \
     --rdzv_id=$RDZV_ID \
     --rdzv_endpoint "$RDZV_ADDR:$RDZV_PORT" \
     --rdzv_backend=c10d \
-    <SCRIPT_NAME>.py --split $data_args
+    ./prithviwxc/gravitywave/<SCRIPT_NAME>.py --split $data_args
 
 conda deactivate

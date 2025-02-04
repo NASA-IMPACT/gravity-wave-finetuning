@@ -7,14 +7,14 @@ import torch.nn.functional as F
 import tqdm
 import xarray as xr
 
-from datamodule import ERA5DataModule
-from gravity_wave_model import UNetWithTransformer
+from prithviwxc.gravitywave.datamodule import ERA5DataModule
+from prithviwxc.gravitywave.gravity_wave_model import UNetWithTransformer
 from torch.nn.parallel import DistributedDataParallel as DDP
 import torch.distributed as dist
 
-local_rank = int(os.environ["LOCAL_RANK"])
-rank = int(os.environ["RANK"])
-device = f"cuda:{local_rank}"
+local_rank = int(os.getenv("LOCAL_RANK",'0'))
+rank = int(os.getenv("RANK",'0'))
+device = torch.device(f"cuda:{local_rank}" if torch.cuda.is_available() else "cpu")
 dtype = torch.float32
 
 def setup():
@@ -60,7 +60,11 @@ def get_model(cfg, vartype,ckpt_singular: str) -> torch.nn.Module:
         patch_size_px=cfg.patch_size_px,
         device=device,
     )
-    model = DDP(model.to(local_rank, dtype=dtype), device_ids=[local_rank])
+
+    if device==torch.device('cpu'):
+        model = DDP(model.to(device))
+    else:
+        model = DDP(model.to(local_rank, dtype=dtype), device_ids=[local_rank])
     model = load_checkpoint(model,ckpt_singular)
 
     return model

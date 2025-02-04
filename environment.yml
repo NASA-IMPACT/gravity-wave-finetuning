@@ -208,3 +208,4 @@ dependencies:
       - wandb==0.17.7
       - xarray==2024.7.0
       - yacs==0.1.8
+      - git+https://github.com/NASA-IMPACT/Prithvi-WxC.git

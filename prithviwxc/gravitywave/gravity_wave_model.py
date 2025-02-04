@@ -2,9 +2,9 @@ import torch
 import torch.nn as nn
 
 import importlib
-model = importlib.import_module('Prithvi-WxC.PrithviWxC.model')
+model = importlib.import_module('PrithviWxC.model')
 
-from distributed import print0
+from prithviwxc.gravitywave.distributed import print0
 
 torch.set_float32_matmul_precision("high")
 

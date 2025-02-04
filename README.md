@@ -8,10 +8,11 @@ This repository contains code and resources for training and inferring gravity w
 
 ## Setup
 
-1.	Clone the repository with submodules:
+1.	Clone the repository and download config:
 
-        git clone --recurse-submodules git@github.com:NASA-IMPACT/gravity-wave-finetuning.git gravity_wave_finetuning
-        cd gravity_wave_finetuning
+        git clone git@github.com:NASA-IMPACT/gravity-wave-finetuning.git
+        cd gravity-wave-finetuning
+        wget https://huggingface.co/Prithvi-WxC/Gravity_wave_Parameterization/resolve/main/config.yaml
 
 2.	Create and activate a Conda environment for the project:
 
@@ -55,7 +56,7 @@ To run the training on a single node and a single GPU, execute the following com
                 --nproc_per_node=1 \
                 --nnodes=1 \
                 --rdzv_backend=c10d \
-                finetune_gravity_wave.py 
+                prithviwxc/gravitywave/finetune_gravity_wave.py
                 --split uvtp122
 
 ### Multi-node Training
@@ -71,7 +72,7 @@ After training, you can run inferences using the following command. Make sure to
                 --nnodes=1 \
                 --nproc_per_node=1 \
                 --rdzv_backend=c10d \
-                inference.py \
+                prithviwxc/gravitywave/inference.py \
                 --split=uvtp122 \
                 --ckpt_path=/path/to/checkpoint \
                 --data_path=/path/to/data \
